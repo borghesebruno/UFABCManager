@@ -5,6 +5,7 @@ import jade.core.ProfileImpl;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +27,8 @@ public class UFABCManager {
         //adicionando agente RMA
         //addAgent(containerController, "rma", "jade.tools.rma.rma", null);
         //addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
+        
+        System.out.println(JOptionPane.showInputDialog("Teste"));
     }
 
     public static void startMainContainer(String host, String port, String name) {
