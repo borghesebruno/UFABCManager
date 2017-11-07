@@ -16,16 +16,14 @@ public class UFABCManager {
 
     public static void main(String[] args) throws InterruptedException 
     {
-        //iniciando main container
-        //startMainContainer(Profile.LOCAL_HOST, Profile.LOCAL_PORT, "UFABC");
         startMainContainer("127.0.0.1", Profile.LOCAL_PORT, "UFABC");
-        //adicionando agente
-        //SINTAXE: addAgent(container, nome_do_agente, classe, parametros de inicializacao)
-        addAgent(containerController, "Container", AgenteTeste.class.getName(), null );
+        addAgent(containerController, "Turma", Turma.class.getName(), null );
+        addAgent(containerController, "Sala", Sala.class.getName(), null );
+        addAgent(containerController, "Docente", Docente.class.getName(), null );
 
         //adicionando agente RMA
         //addAgent(containerController, "rma", "jade.tools.rma.rma", null);
-        //addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
+        addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
     }
 
     public static void startMainContainer(String host, String port, String name) {
