@@ -8,10 +8,6 @@ import jade.wrapper.StaleProxyException;
 import javax.swing.*;
 import java.awt.GridLayout;
 
-/**
- *
- * @author b.borghese
- */
 public class UFABCManager {
     static ContainerController containerController;
     static AgentController agentController;
