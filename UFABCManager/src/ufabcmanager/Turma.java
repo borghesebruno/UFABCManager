@@ -6,7 +6,7 @@ public class Turma extends Agent {
     @Override
     public void setup() 
     {
-        
+        System.out.println("TURMA INIT");
     }
     
     @Override

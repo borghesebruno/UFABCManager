@@ -5,6 +5,7 @@ import jade.core.ProfileImpl;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+import javax.swing.*;
 
 /**
  *
@@ -13,13 +14,28 @@ import jade.wrapper.StaleProxyException;
 public class UFABCManager {
     static ContainerController containerController;
     static AgentController agentController;
+    static int TURMAS;
+    static int SALAS;
+    static int DOCENTES;
 
     public static void main(String[] args) throws InterruptedException 
     {
         startMainContainer("127.0.0.1", Profile.LOCAL_PORT, "UFABC");
-        addAgent(containerController, "Turma", Turma.class.getName(), null );
-        addAgent(containerController, "Sala", Sala.class.getName(), null );
-        addAgent(containerController, "Docente", Docente.class.getName(), null );
+        
+        JOptionPane.showMessageDialog(null, "Bem vindo ao UFABCManager!\nPronto para começar?");
+        TURMAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de turmas?"));
+        SALAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de salas?"));
+        DOCENTES = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de docentes?"));
+        
+        for(int i = 1; i <= TURMAS; i++) {
+            addAgent(containerController, "Turma-"+i, Turma.class.getName(), null );
+        }
+        for(int i = 1; i <= SALAS; i++) {
+            addAgent(containerController, "Sala-"+i, Sala.class.getName(), null );
+        }
+        for(int i = 1; i <= DOCENTES; i++) {
+            addAgent(containerController, "Docente-"+i, Docente.class.getName(), null );
+        }
 
         //adicionando agente RMA
         //addAgent(containerController, "rma", "jade.tools.rma.rma", null);
