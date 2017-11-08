@@ -6,7 +6,7 @@ public class Sala extends Agent {
     @Override
     public void setup() 
     {
-        
+        System.out.println("Novo agente Sala inicializado.");
     }
     
     @Override

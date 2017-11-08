@@ -1,1 +1,1 @@
-http://Bruno.Home:7778/acc
+http://172.31.57.114:7778/acc
