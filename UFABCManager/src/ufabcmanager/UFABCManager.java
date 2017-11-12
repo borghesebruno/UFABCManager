@@ -14,15 +14,19 @@ public class UFABCManager {
     static int TURMAS;
     static int SALAS;
     static int DOCENTES;
-    static String[] args;
+    static String[] args = new String[1];
     static String nomeDocente;
     static String disciplinaDocente;
     static String nomeTurma;
     static String disciplinaTurma;
+    static String nomeSala;
 
     public static void main(String[] args) throws InterruptedException 
     {
-        JOptionPane.showMessageDialog(null, "Bem vindo ao UFABCManager!\nPronto para começar?");
+        String message = "Bem vindo ao UFABCManager, o\n"+
+                         "gerenciador de turmas da UFABC!\n"+
+                         "Pronto para começar?";
+        JOptionPane.showConfirmDialog(null, message, "Olá!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         
         startMainContainer("127.0.0.1", Profile.LOCAL_PORT, "UFABC");
         addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
@@ -38,7 +42,7 @@ public class UFABCManager {
             }
             args = new String[1];
             args[0] = disciplinaDocente;
-            addAgent(containerController, nomeDocente, Docente.class.getName(), args );
+            addAgent(containerController, "Prof-"+nomeDocente, Docente.class.getName(), args );
             nomeDocente = "";
         }
         for(int i = 1; i <= TURMAS; i++) {
@@ -52,7 +56,12 @@ public class UFABCManager {
             nomeTurma = "";
         }
         for(int i = 1; i <= SALAS; i++) {
-            addAgent(containerController, "Sala-"+i, Sala.class.getName(), null );
+            boolean preenchido = false;
+            while(preenchido == false) {
+                preenchido = salaForm();
+            }
+            addAgent(containerController, "Sala-"+nomeSala, Sala.class.getName(), null );
+            nomeSala = "";
         }
     }
 
@@ -107,6 +116,21 @@ public class UFABCManager {
         if (result == JOptionPane.OK_OPTION && !nome.getText().equals("") && !disciplina.getText().equals("")) {
                 nomeTurma = nome.getText();
                 disciplinaTurma = disciplina.getText();
+                return true;
+        } else {
+            return false;
+        }
+    }
+    
+    private static boolean salaForm() {
+        JTextField nome = new JTextField("");
+        JPanel panel = new JPanel(new GridLayout(0,1));
+        panel.add(new JLabel("Nome da sala:"));
+        panel.add(nome);
+        int result = JOptionPane.showConfirmDialog(null, panel, "Informações de Sala",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+        if (result == JOptionPane.OK_OPTION && !nome.getText().equals("")) {
+                nomeSala = nome.getText();
                 return true;
         } else {
             return false;
