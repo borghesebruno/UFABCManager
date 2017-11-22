@@ -1,5 +1,7 @@
 package ufabcmanager;
 
+import java.io.*;
+import java.util.Scanner;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.wrapper.AgentController;
@@ -31,37 +33,61 @@ public class UFABCManager {
         startMainContainer("127.0.0.1", Profile.LOCAL_PORT, "UFABC");
         addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
         
-        TURMAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de turmas?"));
-        SALAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de salas?"));
-        DOCENTES = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de docentes?"));
-        
-        for(int i = 1; i <= DOCENTES; i++) {
-            boolean preenchido = false;
-            while(preenchido == false) {
-                preenchido = docenteForm();
+        if(true) {
+            Scanner scanner = new Scanner(UFABCManager.class.getResourceAsStream("Entrada.txt"));
+            String s = new String();
+            while(scanner.hasNextLine()){
+                s = scanner.nextLine();
+                String[] split = s.split(" ");
+                switch(split[0]) {
+                    case "Turma": //Turma Nome_da_turma disciplina
+                        args = new String[1];
+                        args[0] = split[2];
+                        addAgent(containerController, "Turma-"+split[1], Turma.class.getName(), args );
+                        break;
+                    case "Docente"://Docente Nome_do_docente disciplina
+                        args = new String[1];
+                        args[0] = split[2];
+                        addAgent(containerController, "Prof-"+split[1], Docente.class.getName(), args );
+                        break;
+                    case "Sala"://Sala Numero_da_sala
+                        addAgent(containerController, "Sala-"+split[1], Sala.class.getName(), null );
+                        break;
+                }
             }
-            args = new String[1];
-            args[0] = disciplinaDocente;
-            addAgent(containerController, "Prof-"+nomeDocente, Docente.class.getName(), args );
-            nomeDocente = "";
-        }
-        for(int i = 1; i <= TURMAS; i++) {
-            boolean preenchido = false;
-            while(preenchido == false) {
-                preenchido = turmaForm();
+        } else {
+            TURMAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de turmas?"));
+            SALAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de salas?"));
+            DOCENTES = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de docentes?"));
+
+            for(int i = 1; i <= DOCENTES; i++) {
+                boolean preenchido = false;
+                while(preenchido == false) {
+                    preenchido = docenteForm();
+                }
+                args = new String[1];
+                args[0] = disciplinaDocente;
+                addAgent(containerController, "Prof-"+nomeDocente, Docente.class.getName(), args );
+                nomeDocente = "";
             }
-            args = new String[1];
-            args[0] = disciplinaTurma;
-            addAgent(containerController, "Turma-"+nomeTurma, Turma.class.getName(), args );
-            nomeTurma = "";
-        }
-        for(int i = 1; i <= SALAS; i++) {
-            boolean preenchido = false;
-            while(preenchido == false) {
-                preenchido = salaForm();
+            for(int i = 1; i <= TURMAS; i++) {
+                boolean preenchido = false;
+                while(preenchido == false) {
+                    preenchido = turmaForm();
+                }
+                args = new String[1];
+                args[0] = disciplinaTurma;
+                addAgent(containerController, "Turma-"+nomeTurma, Turma.class.getName(), args );
+                nomeTurma = "";
             }
-            addAgent(containerController, "Sala-"+nomeSala, Sala.class.getName(), null );
-            nomeSala = "";
+            for(int i = 1; i <= SALAS; i++) {
+                boolean preenchido = false;
+                while(preenchido == false) {
+                    preenchido = salaForm();
+                }
+                addAgent(containerController, "Sala-"+nomeSala, Sala.class.getName(), null );
+                nomeSala = "";
+            }
         }
     }
 
