@@ -1,17 +1,51 @@
-Docente CARLOS_ALBERTO_DA_SILVA Base_Experimental_das_Ciências_Naturais
-Docente ELIZABETH_TEODOROV Base_Experimental_das_Ciências_Naturais
-Docente RONALDO_CRISTIANO_PRATI Bases_Computacionais_da_Ciência
-Docente THIAGO_FERREIRA_COVOES Bases_Computacionais_da_Ciência
-Docente DAVID_CORREA_MARTINS_JUNIOR Bases_Computacionais_da_Ciência
-Docente JOAO_MANOEL_LOSADA_MOREIRA Bases_Conceituais_da_Energia
-Docente SERGIO_HENRIQUE_FERREIRA_DE_OLIVEIRA Bases_Conceituais_da_Energia
-Turma NA1BCS0001-15SA Base_Experimental_das_Ciências_Naturais
-Turma NA1BCS0001-15SB Base_Experimental_das_Ciências_Naturais
-Turma NA1BIS0005-15SA Bases_Computacionais_da_Ciência
-Turma NA11BIS0005-15SA Bases_Computacionais_da_Ciência
-Turma NA1BIS0005-15SB Bases_Computacionais_da_Ciência
-Turma NA1BIJ0207-15SA Bases_Conceituais_da_Energia
-Turma NA1BIJ0207-15SB Bases_Conceituais_da_Energia
+Turma NABIS0005-15SA Bases_Computacionais_da_Ciência Q2
+Turma NABIJ0207-15SA Bases_Conceituais_da_Energia SX2
+Turma NA1BIR0004-15SA Bases_Epistemológicas_da_Ciência_Moderna T2;SX1
+Turma NA2BIR0004-15SA Bases_Epistemológicas_da_Ciência_Moderna T2;SX1
+Turma NBBIR0004-15SA Bases_Epistemológicas_da_Ciência_Moderna T1;SX2
+Turma NABCL0306-15SA Biodiversidade:_Interações_entre_organismos_embiente S1;Q1
+Turma NA1BCL0308-15SA Bioquímica:_estrutura,_propriedade_e_funções_deiomoléculas S1;Q1
+Turma NABIR0603-15SA Ciência,_Tecnologia_e_Sociedade T2;SX1
+Turma NBBIR0603-15SA Ciência,_Tecnologia_e_Sociedade T1;SX2
+Turma NABIK0102-15SA Estrutura_da_Matéria T1;SX2
+Turma NABIL0304-15SA Evolução_e_Diversificação_da_Vida_na_Terra S1;Q1
+Turma NA1BCJ0204-15SA Fenômenos_Mecânicos T1;SX2
+Turma NA1BCJ0205-15SA Fenômenos_Térmicos Q1;SX2
+Turma NA4BCJ0205-15SA Fenômenos_Térmicos Q1;SX2
+Turma NA7BCJ0205-15SA Fenômenos_Térmicos7 Q1;SX2
+Turma NB1BCJ0205-15SA Fenômenos_Térmicos Q2;SX1
+Turma NB4BCJ0205-15SA Fenômenos_Térmicos Q2;SX1
+Turma NABCK0103-15SA Física_Quântica T1;SX2
+Turma NBBCK0103-15SA Física_Quântica T2;SX1
+Turma NABCN0402-15SA Funções_de_Uma_Variável S2;QUI1
+Turma NBBCN0402-15SA Funções_de_Uma_Variável S1;QUI2
+Turma NA1BCN0407-15SA Funções_de_Várias_Variáveis S2;QUI1
+Turma NA2BCN0407-15SA Funções_de_Várias_Variáveis S2;QUI1
+Turma NA3BCN0407-15SA Funções_de_Várias_Variáveis S2;QUI1
+Turma NB1BCN0407-15SA Funções_de_Várias_Variáveis S1;QUI2
+Turma NB2BCN0407-15SA Funções_de_Várias_Variáveis S1;QUI2
+Turma NB3BCN0407-15SA Funções_de_Várias_Variáveis S1;QUI2
+Turma NABCN0404-15SA Geometrianalítica S2;QUI1
+Turma NBBCN0404-15SA Geometrianalítica S1;QUI2
+Turma NA1BCK0104-15SA Interaçõestômicas_e_Moleculares T1;QUI2
+Turma NA2BCK0104-15SA Interaçõestômicas_e_Moleculares T1;QUI2
+Turma NB1BCK0104-15SA Interaçõestômicas_e_Moleculares T2;QUI1
+Turma NB2BCK0104-15SA Interaçõestômicas_e_Moleculares T2;QUI1
+Turma NABCM0504-15SA Natureza_da_Informação S1;Q2
+Turma NA1BCM0505-15SA Processamento_da_Informação T1;SX2
+Turma NA4BCM0505-15SA Processamento_da_Informação T1;SX2
+Turma NB1BCM0505-15SA Processamento_da_Informação T2;SX1
+Turma NB4BCM0505-15SA Processamento_da_Informação T2;SX1
+Turma NB5BCM0505-15SA Processamento_da_Informação T2;SX1
+Turma NA1BCS0002-15SA Projeto_Dirigido S2
+Turma NA2BCS0002-15SA Projeto_Dirigido S2
+Turma NB1BCS0002-15SA Projeto_Dirigido S1
+Turma NB2BCS0002-15SA Projeto_Dirigido S1
+Turma NA1BCL0307-15SA Transformações_Químicas S1;Q2
+Turma NA4BCL0307-15SA Transformações_Químicas S1;Q2
+Turma NB1BCL0307-15SA Transformações_Químicas S2;Q1
+Turma NB4BCL0307-15SA Transformações_Químicas S2;Q1
+Turma NC1BCL0307-15SA Transformações_Químicas S1;T2
 Sala 201
 Sala 202
 Sala 203
@@ -19,3 +53,77 @@ Sala 204
 Sala 205
 Sala 206
 Sala 207
+Sala 208
+Sala 209
+Sala 210
+Sala 211
+Sala 212
+Sala 213
+Sala 214
+Sala 215
+Sala 101
+Sala 102
+Sala 103
+Sala 104
+Sala 105
+Sala 106
+Sala 107
+Sala 108
+Sala 109
+Sala 110
+Sala 111
+Sala 112
+Sala 113
+Sala 114
+Sala 115
+Sala 301
+Sala 302
+Sala 303
+Sala 304
+Sala 305
+Sala 306
+Sala 307
+Sala 308
+Sala 309
+Sala 310
+Sala 311
+Sala 312
+Sala 313
+Sala 314
+Sala 315
+Sala 316
+Sala 317
+Sala 318
+Docente MARIO_LESTON_REY Bases_Computacionais_da_Ciência
+Docente CONRADOUGUSTUS_DE_MELO Bases_Conceituais_da_Energia
+Docente William_Jose_Steinle Bases_Epistemológicas_da_Ciência_Moderna
+Docente NATHALIE_DELMEIDA_BRESSIANI Bases_Epistemológicas_da_Ciência_Moderna
+Docente ANDRE_ETEROVIC Biodiversidade:_Interações_entre_organismos_embiente
+Docente JOAO_HENRIQUE_GHILARDI_LAGO Bioquímica:_estrutura,_propriedade_e_funções_deiomoléculas
+Docente SERGIOMADEU_DA_SILVEIRA Ciência,_Tecnologia_e_Sociedade
+Docente Erica_Freirentunes Estrutura_da_Matéria
+Docente Adriana_Pugliese_Netto_Lamas Evolução_e_Diversificação_da_Vida_na_Terra
+Docente Pedrolves_Da_Silvautreto Fenômenos_Mecânicos
+Docente VILSON_TONIN_ZANCHIN Fenômenos_Térmicos
+Docente MAXIMILIANO_UJEVIC_TONINO Fenômenos_Térmicos
+Docente Gayane_Karapetyan Fenômenos_Térmicos
+Docente GUSTAVO_MICHEL_MENDOZA_LA_TORRE Física_Quântica
+Docente ZHANNA_GENNADYEVNA_KUZNETSOVA Funções_de_Uma_Variável
+Docente RAFAEL_RIBEIRO_DIAS_VILELA_DE_OLIVEIRA Funções_de_Várias_Variáveis
+Docente EDSONLEXRRAZOLA_IRIARTE Funções_de_Várias_Variáveis
+Docente PEDRO_LAURIDSEN_RIBEIRO Funções_de_Várias_Variáveis
+Docente MARIANA_RODRIGUES_DA_SILVEIRA Geometrianalítica
+Docente LUCIANO_SOARES_DA_CRUZ Interaçõestômicas_e_Moleculares
+Docente PEDRO_GALLI_MERCADANTE Interaçõestômicas_e_Moleculares
+Docente Mirtha_Lina_Fernandez_Venero Natureza_da_Informação
+Docente GORDANA_MANIC Processamento_da_Informação
+Docente Monael_Pinheiro_Ribeiro Processamento_da_Informação
+Docente MURILO_BELLEZONI_LOIOLA Processamento_da_Informação
+Docente Aritanan_Gruber Processamento_da_Informação
+Docente Fernanda_Franzolin Projeto_Dirigido
+Docente KARLA_VITTORI Projeto_Dirigido
+Docente JULIANA_MARCHI Projeto_Dirigido
+Docente MARIA_CRISTINA_CARLAN_DA_SILVA Projeto_Dirigido
+Docente REGINA_CELIADAO Transformações_Químicas
+Docente RUTH_FLAVIA_VERA_VILLAMIL_JAIMES Transformações_Químicas
+Docente RODRIGO_MAGHDISSIAN_CORDEIRO Transformações_Químicas

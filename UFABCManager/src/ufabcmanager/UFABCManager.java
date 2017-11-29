@@ -16,7 +16,7 @@ public class UFABCManager {
     static int TURMAS;
     static int SALAS;
     static int DOCENTES;
-    static String[] args = new String[1];
+    static String[] args;
     static String nomeDocente;
     static String disciplinaDocente;
     static String nomeTurma;
@@ -40,9 +40,10 @@ public class UFABCManager {
                 s = scanner.nextLine();
                 String[] split = s.split(" ");
                 switch(split[0]) {
-                    case "Turma": //Turma Nome_da_turma disciplina
-                        args = new String[1];
+                    case "Turma"://Turma Nome_da_turma disciplina
+                        args = new String[2];
                         args[0] = split[2];
+                        args[1] = split[3];
                         addAgent(containerController, "Turma-"+split[1], Turma.class.getName(), args );
                         break;
                     case "Docente"://Docente Nome_do_docente disciplina
@@ -75,8 +76,9 @@ public class UFABCManager {
                 while(preenchido == false) {
                     preenchido = turmaForm();
                 }
-                args = new String[1];
+                args = new String[2];
                 args[0] = disciplinaTurma;
+                args[1] = "";
                 addAgent(containerController, "Turma-"+nomeTurma, Turma.class.getName(), args );
                 nomeTurma = "";
             }

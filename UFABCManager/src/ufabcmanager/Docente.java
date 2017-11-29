@@ -1,10 +1,12 @@
 package ufabcmanager;
 
 import jade.core.Agent;
+import java.util.*;
 
 public class Docente extends Agent {
     static String DISCIPLINA = "";
     private String S1="",S2="",T1="",T2="",Q1="",Q2="",QUI1="",QUI2="",SX1="",SX2="";
+    
     @Override
     public void setup() 
     {

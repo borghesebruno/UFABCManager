@@ -8,9 +8,11 @@ import jade.lang.acl.*;
 public class EnviarProposta extends SimpleBehaviour
 {
    boolean fim = false;
+   Turma t = new Turma();
    public EnviarProposta (Agent a)
    {
       super(a);
+      t = (Turma) a;
    }   
    
    @Override
@@ -24,6 +26,7 @@ public class EnviarProposta extends SimpleBehaviour
       mensagem.addReceiver(new AID("Receptor",AID.ISLOCALNAME));
       mensagem.setLanguage("Portugues");
       mensagem.setContent("Olá, como você vai Receptor?");
+      t.getHorarios();
       //Envia a mensagem aos destinatarios
       System.out.println(myAgent.getLocalName() +": Enviando olá ao Receptor");
       System.out.println(myAgent.getLocalName() + "\n" + mensagem.toString());
