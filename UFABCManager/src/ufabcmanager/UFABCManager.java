@@ -25,13 +25,14 @@ public class UFABCManager {
 
     public static void main(String[] args) throws InterruptedException 
     {
+         String agentes="";
         String message = "Bem vindo ao UFABCManager, o\n"+
                          "gerenciador de turmas da UFABC!\n"+
                          "Pronto para começar?";
         JOptionPane.showConfirmDialog(null, message, "Olá!", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         
         startMainContainer("127.0.0.1", Profile.LOCAL_PORT, "UFABC");
-        addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
+        //addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
         
         if(true) {
             Scanner scanner = new Scanner(UFABCManager.class.getResourceAsStream("Entrada.txt"));
@@ -45,14 +46,17 @@ public class UFABCManager {
                         args[0] = split[2];
                         args[1] = split[3];
                         addAgent(containerController, "Turma-"+split[1], Turma.class.getName(), args );
+                        agentes = agentes + "Turma-" + split[1] + ",;,";
                         break;
                     case "Docente"://Docente Nome_do_docente disciplina
                         args = new String[1];
                         args[0] = split[2];
                         addAgent(containerController, "Prof-"+split[1], Docente.class.getName(), args );
+                        agentes = agentes + "Prof-"+split[1] + ",;,";
                         break;
                     case "Sala"://Sala Numero_da_sala
                         addAgent(containerController, "Sala-"+split[1], Sala.class.getName(), null );
+                        agentes = agentes + "Sala-"+split[1] + ",;,";
                         break;
                 }
             }
@@ -90,7 +94,9 @@ public class UFABCManager {
                 addAgent(containerController, "Sala-"+nomeSala, Sala.class.getName(), null );
                 nomeSala = "";
             }
+            
         }
+        //addAgent(containerController, "Sniffer", "jade.tools.sniffer.Sniffer", new Object[]{agentes});  
     }
 
     public static void startMainContainer(String host, String port, String name) {

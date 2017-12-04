@@ -9,31 +9,44 @@ public class EnviarProposta extends SimpleBehaviour
 {
    boolean fim = false;
    Turma t = new Turma();
-   public EnviarProposta (Agent a)
+   private String Receptor;
+   public EnviarProposta (Turma a, String Receptor)
    {
       super(a);
-      t = (Turma) a;
+      t =  a;
+      this.Receptor = Receptor;
    }   
    
    @Override
    public void action()
    {
-      System.out.println(myAgent.getLocalName() +": Preparando para enviar uma mensagem ao Receptor");
-      // Criação do objeto ACLMessage
-      ACLMessage mensagem = new ACLMessage(ACLMessage.PROPOSE);
-      //Preencher os campos necesários da mensagem
-      mensagem.setSender(myAgent.getAID());
-      mensagem.addReceiver(new AID("Receptor",AID.ISLOCALNAME));
-      mensagem.setLanguage("Portugues");
-      mensagem.setContent("Olá, como você vai Receptor?");
-      t.getHorarios();
-      //Envia a mensagem aos destinatarios
-      System.out.println(myAgent.getLocalName() +": Enviando olá ao Receptor");
-      System.out.println(myAgent.getLocalName() + "\n" + mensagem.toString());
-      myAgent.send(mensagem);
-
-      fim = true;
-   }
+        System.out.println(myAgent.getLocalName() +": Preparando para enviar uma proposta ao Receptor" + this.Receptor);
+        // Criação do objeto ACLMessage
+        ACLMessage mensagem = new ACLMessage(ACLMessage.PROPOSE);
+        //Preencher os campos necesários da mensagem
+        mensagem.setSender(myAgent.getAID());
+        mensagem.addReceiver(new AID(this.Receptor,AID.ISLOCALNAME));
+        mensagem.setLanguage("Portugues");
+        mensagem.setContent(t.getHorarios());
+        mensagem.setOntology("Proposta");
+        //Envia a mensagem aos destinatarios
+        System.out.println(myAgent.getLocalName() +": Enviando proposta ao Receptor");
+        System.out.println(myAgent.getLocalName() + "\n" + mensagem.toString());
+        myAgent.send(mensagem);
+        ACLMessage resposta = myAgent.blockingReceive();
+        if (resposta!= null)
+        {
+            if(resposta.getContent()=="Aceito"){ 
+                if (t.getFase()==1){
+                    t.setDocenteAceito(myAgent.getAID().getLocalName());
+                }
+                else if(t.getFase()==2){
+                    t.setSalaAceita(myAgent.getAID().getLocalName());
+                }
+            }
+        }
+        fim = true;
+    }
    
    @Override
    public boolean done()

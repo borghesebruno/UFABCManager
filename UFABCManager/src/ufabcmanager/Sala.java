@@ -1,100 +1,104 @@
 package ufabcmanager;
 
 import jade.core.Agent;
+import jade.domain.DFService;
+import jade.domain.FIPAAgentManagement.DFAgentDescription;
+import jade.domain.FIPAAgentManagement.ServiceDescription;
+import jade.domain.FIPAException;
+import java.util.HashMap;
+import java.util.Map;
+
+class HorarioSala{
+    String Docente;
+    String Turma;
+    HorarioSala(String Docente, String Turma){
+        this.Docente = Docente;
+        this.Turma = Turma;
+    }
+    HorarioSala(){ }
+}
+
 
 public class Sala extends Agent {
-    private String S1="",S2="",T1="",T2="",Q1="",Q2="",QUI1="",QUI2="",SX1="",SX2="";
+    String Mensagem;
+    String Agente = "Sala";
+    String Type="Receber turmas";
+    Map<String, HorarioSala> mapaNomes = new HashMap<String, HorarioSala>(); 
+    
     @Override
     public void setup() 
     {
         System.out.println("Novo agente Sala inicializado.");
+        this.setMensagem("Sala");
+        InicializaMap();
+        register();//addBehaviour(new RegistrarServico(this));
+        addBehaviour(new ReceberProposta(this));
     }
     
+    
+     protected void InicializaMap(){
+        HorarioSala hora= new HorarioSala("", "");
+        mapaNomes.put("S1", hora);
+        mapaNomes.put("S2", hora);
+        mapaNomes.put("T1", hora);
+        mapaNomes.put("T2", hora);
+        mapaNomes.put("Q1", hora);
+        mapaNomes.put("Q2", hora);
+        mapaNomes.put("QUI1", hora);
+        mapaNomes.put("QUI2", hora);
+        mapaNomes.put("SX1", hora);
+        mapaNomes.put("SX2", hora);
+    }
     @Override
     protected void takeDown()
     {
         
     }
 
-    public String getS1() {
-        return S1;
-    }
-
-    public void setS1(String S1) {
-        this.S1 = S1;
-    }
-
-    public String getS2() {
-        return S2;
-    }
-
-    public void setS2(String S2) {
-        this.S2 = S2;
-    }
-
-    public String getT1() {
-        return T1;
-    }
-
-    public void setT1(String T1) {
-        this.T1 = T1;
-    }
-
-    public String getT2() {
-        return T2;
-    }
-
-    public void setT2(String T2) {
-        this.T2 = T2;
-    }
-
-    public String getQ1() {
-        return Q1;
-    }
-
-    public void setQ1(String Q1) {
-        this.Q1 = Q1;
-    }
-
-    public String getQ2() {
-        return Q2;
-    }
-
-    public void setQ2(String Q2) {
-        this.Q2 = Q2;
-    }
-
-    public String getQUI1() {
-        return QUI1;
-    }
-
-    public void setQUI1(String QUI1) {
-        this.QUI1 = QUI1;
-    }
-
-    public String getQUI2() {
-        return QUI2;
-    }
-
-    public void setQUI2(String QUI2) {
-        this.QUI2 = QUI2;
-    }
-
-    public String getSX1() {
-        return SX1;
-    }
-
-    public void setSX1(String SX1) {
-        this.SX1 = SX1;
-    }
-
-    public String getSX2() {
-        return SX2;
-    }
-
-    public void setSX2(String SX2) {
-        this.SX2 = SX2;
+    public HorarioSala getDay(String Dia){       
+        return mapaNomes.get(Dia);
     }
     
+    public void setDay(String Dia, String Turma, String Docente){
+        HorarioSala hora= new HorarioSala(Docente, Turma);
+        mapaNomes.put(Dia, hora);
+    }
     
+
+    public String getMensagem() {
+        return Mensagem;
+    }
+
+    public void setMensagem(String Mensagem) {
+        this.Mensagem = Mensagem;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public String getAgente() {
+        return Agente;
+    }
+    
+    public void register() {
+        DFAgentDescription dfd = new DFAgentDescription();
+        dfd.setName(this.getAID());
+      
+        ServiceDescription sd = new ServiceDescription();
+        System.out.println("Registrando Sala: " + this.getType() + " " + this.getMensagem());
+        sd.setType(this.getType());
+        sd.setName(this.getMensagem());
+     
+        dfd.addServices(sd);
+      
+        try 
+        {
+            DFService.register(this, dfd);
+        } 
+        catch (FIPAException e) 
+        {
+            e.printStackTrace();
+        }
+    }
 }
