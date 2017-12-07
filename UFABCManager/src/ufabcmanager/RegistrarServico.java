@@ -42,12 +42,12 @@ public class RegistrarServico extends SimpleBehaviour
       //Definição e descrição do serviço
       ServiceDescription sd = new ServiceDescription();
       if(Agente == "Docente"){
-        System.out.println("Registrando t: " + t.getType() + " " + t.getMensagem());
+        //System.out.println("Registrando t: " + t.getType() + " " + t.getMensagem());
         sd.setType(t.getType()); //Tipo do Servico
         sd.setName(t.getMensagem()); //Nome do Servico
       }
       else{
-        System.out.println("Registrando e: " + e.getType() + " " + e.getMensagem());
+        //System.out.println("Registrando e: " + e.getType() + " " + e.getMensagem());
         sd.setType(e.getType()); //Tipo do Servico
         sd.setName(e.getMensagem()); //Nome do Servico  
       }
@@ -62,6 +62,7 @@ public class RegistrarServico extends SimpleBehaviour
       {
          //register(agente que oferece, descricao)
          DFService.register(myAgent, dfd);
+         fim = true;
       } 
       catch (FIPAException e) 
       {

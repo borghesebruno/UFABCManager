@@ -7,6 +7,7 @@ import jade.core.ProfileImpl;
 import jade.wrapper.AgentController;
 import jade.wrapper.ContainerController;
 import jade.wrapper.StaleProxyException;
+import java.awt.Dimension;
 import javax.swing.*;
 import java.awt.GridLayout;
 
@@ -22,10 +23,15 @@ public class UFABCManager {
     static String nomeTurma;
     static String disciplinaTurma;
     static String nomeSala;
-
-    public static void main(String[] args) throws InterruptedException 
+    public static FileWriter arq;
+    public static PrintWriter gravarArq;
+    static String Horarios;
+    public static void main(String[] args) throws InterruptedException, IOException 
     {
-         String agentes="";
+        Horarios = "";
+        
+
+        String agentes="";
         String message = "Bem vindo ao UFABCManager, o\n"+
                          "gerenciador de turmas da UFABC!\n"+
                          "Pronto para começar?";
@@ -33,11 +39,12 @@ public class UFABCManager {
         
         startMainContainer("127.0.0.1", Profile.LOCAL_PORT, "UFABC");
         //addAgent(containerController, "rma", jade.tools.rma.rma.class.getName(), null);
-        
+
         if(true) {
             Scanner scanner = new Scanner(UFABCManager.class.getResourceAsStream("Entrada.txt"));
             String s = new String();
             while(scanner.hasNextLine()){
+                
                 s = scanner.nextLine();
                 String[] split = s.split(" ");
                 switch(split[0]) {
@@ -46,20 +53,23 @@ public class UFABCManager {
                         args[0] = split[2];
                         args[1] = split[3];
                         addAgent(containerController, "Turma-"+split[1], Turma.class.getName(), args );
-                        agentes = agentes + "Turma-" + split[1] + ",;,";
+                        agentes = agentes + "Turma-" + split[1] + ",";
+                        
                         break;
                     case "Docente"://Docente Nome_do_docente disciplina
                         args = new String[1];
                         args[0] = split[2];
                         addAgent(containerController, "Prof-"+split[1], Docente.class.getName(), args );
-                        agentes = agentes + "Prof-"+split[1] + ",;,";
+                        agentes = agentes + "Prof-"+split[1] + ",";
                         break;
                     case "Sala"://Sala Numero_da_sala
                         addAgent(containerController, "Sala-"+split[1], Sala.class.getName(), null );
-                        agentes = agentes + "Sala-"+split[1] + ",;,";
+                        agentes = agentes + "Sala-"+split[1] + ",";
                         break;
                 }
             }
+                    addAgent(containerController, "Sniffer", "jade.tools.sniffer.Sniffer", 
+                                       new Object[]{"df",";","Sala-201",";","Sala-202",";","Prof-MARIO_LESTON_REY",";","Prof-CONRADOUGUSTUS_DE_MELO",";","Turma-NABIS0005-15SA",";","Turma-NABIJ0207-15SA"});
         } else {
             TURMAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de turmas?"));
             SALAS = Integer.parseInt(JOptionPane.showInputDialog("Qual a quantidade de salas?"));
@@ -96,7 +106,17 @@ public class UFABCManager {
             }
             
         }
-        //addAgent(containerController, "Sniffer", "jade.tools.sniffer.Sniffer", new Object[]{agentes});  
+        try
+        {
+           Thread.sleep(200000);
+        }
+        catch(Exception e)
+        {
+           System.out.println("Erro: " + e);
+        }
+        showLongTextMessageInDialog(Horarios);
+        //JOptionPane.showMessageDialog(null, Horarios);
+
     }
 
     public static void startMainContainer(String host, String port, String name) {
@@ -169,5 +189,14 @@ public class UFABCManager {
         } else {
             return false;
         }
+    }
+    
+    private static void showLongTextMessageInDialog(String longMessage) {
+        JTextArea textArea = new JTextArea(longMessage);
+        JScrollPane scrollPane = new JScrollPane(textArea);  
+        textArea.setLineWrap(true);  
+        textArea.setWrapStyleWord(true); 
+        scrollPane.setPreferredSize( new Dimension( 600, 600 ) );
+        JOptionPane.showMessageDialog(null, scrollPane, "Turmas alocadas", JOptionPane.PLAIN_MESSAGE, null);
     }
 }

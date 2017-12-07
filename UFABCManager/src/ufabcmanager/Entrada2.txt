@@ -1,0 +1,6 @@
+Sala 201
+Sala 202
+Docente MARIO_LESTON_REY Bases_Computacionais_da_Ciência
+Docente CONRADOUGUSTUS_DE_MELO Bases_Conceituais_da_Energia
+Turma NABIS0005-15SA Bases_Computacionais_da_Ciência Q2
+Turma NABIJ0207-15SA Bases_Conceituais_da_Energia SX1

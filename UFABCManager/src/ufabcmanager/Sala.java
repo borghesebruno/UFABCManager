@@ -1,10 +1,6 @@
 package ufabcmanager;
 
 import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +16,10 @@ class HorarioSala{
 
 
 public class Sala extends Agent {
-    String Mensagem;
-    String Agente = "Sala";
-    String Type="Receber turmas";
-    Map<String, HorarioSala> mapaNomes = new HashMap<String, HorarioSala>(); 
+    volatile String Mensagem;
+    volatile String Agente = "Sala";
+    volatile String Type="Receber turmas";
+    volatile Map<String, HorarioSala> mapaNomes = new HashMap<String, HorarioSala>(); 
     
     @Override
     public void setup() 
@@ -31,7 +27,7 @@ public class Sala extends Agent {
         System.out.println("Novo agente Sala inicializado.");
         this.setMensagem("Sala");
         InicializaMap();
-        register();//addBehaviour(new RegistrarServico(this));
+        addBehaviour(new RegistrarServico(this));
         addBehaviour(new ReceberProposta(this));
     }
     
@@ -80,25 +76,7 @@ public class Sala extends Agent {
     public String getAgente() {
         return Agente;
     }
+
+   
     
-    public void register() {
-        DFAgentDescription dfd = new DFAgentDescription();
-        dfd.setName(this.getAID());
-      
-        ServiceDescription sd = new ServiceDescription();
-        System.out.println("Registrando Sala: " + this.getType() + " " + this.getMensagem());
-        sd.setType(this.getType());
-        sd.setName(this.getMensagem());
-     
-        dfd.addServices(sd);
-      
-        try 
-        {
-            DFService.register(this, dfd);
-        } 
-        catch (FIPAException e) 
-        {
-            e.printStackTrace();
-        }
-    }
 }

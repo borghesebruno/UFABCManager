@@ -3,10 +3,6 @@ package ufabcmanager;
 import java.util.HashMap;
 import java.util.Map;
 import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
 import java.util.*;
 
 class Horario{
@@ -24,10 +20,10 @@ public class Docente extends Agent {
 
 
     
-    Map<String, Horario> mapaNomes = new HashMap<String, Horario>(); 
-    private String DISCIPLINA = "";
-    private String Type = "Lecionar Disciplinas";
-    private String Agente = "Docente";
+    volatile Map<String, Horario> mapaNomes = new HashMap<String, Horario>(); 
+    volatile private String DISCIPLINA = "";
+    volatile private String Type = "Lecionar Disciplinas";
+    volatile private String Agente = "Docente";
     
     @Override
     public void setup() 
@@ -38,7 +34,7 @@ public class Docente extends Agent {
         Object[] args = getArguments();
         DISCIPLINA = (String) args[0];
         InicializaMap();
-        register();//addBehaviour(new RegistrarServico(this));
+        addBehaviour(new RegistrarServico(this));
         addBehaviour(new ReceberProposta(this));
     }
     
@@ -82,25 +78,6 @@ public class Docente extends Agent {
     public String getAgente() {
         return Agente;
     }
-    
-    public void register() {
-        DFAgentDescription dfd = new DFAgentDescription();
-        dfd.setName(this.getAID());
-      
-        ServiceDescription sd = new ServiceDescription();
-        System.out.println("Registrando Docente: " + this.getType() + " " + this.getMensagem());
-        sd.setType(this.getType());
-        sd.setName(this.getMensagem());
-     
-        dfd.addServices(sd);
-      
-        try 
-        {
-            DFService.register(this, dfd);
-        } 
-        catch (FIPAException e) 
-        {
-            e.printStackTrace();
-        }
-    }
+
+
 }

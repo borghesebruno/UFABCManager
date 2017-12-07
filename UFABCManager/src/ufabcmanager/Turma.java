@@ -1,19 +1,16 @@
 package ufabcmanager;
 
 import jade.core.Agent;
-import jade.domain.DFService;
-import jade.domain.FIPAAgentManagement.DFAgentDescription;
-import jade.domain.FIPAAgentManagement.ServiceDescription;
-import jade.domain.FIPAException;
+
 
 public class Turma extends Agent {
-    public static String DISCIPLINA = "";
-    public static String HORARIOS = "";
-    public String Servicos = "";
-    public String DocenteAceito="";
-    public String SalaAceita = "";
-    public String Type="";
-    public int fase;
+    public volatile String DISCIPLINA = "";
+    public volatile String HORARIOS = "";
+    public volatile String Servicos = "";
+    public volatile String DocenteAceito="";
+    public volatile String SalaAceita = "";
+    public volatile String Type="";
+    public volatile int fase;
     
     @Override
     public void setup() 
@@ -23,58 +20,11 @@ public class Turma extends Agent {
         Object[] args = getArguments();
         DISCIPLINA = (String) args[0];
         HORARIOS = (String) args[1];
-        Type = "Lecionar Disciplinas";
-        
-        try
-        {
-            Thread.sleep(10000);
-        }
-        catch(Exception e)
-        {
-            System.out.println("Erro: " + e);
-        }
-        s="";
-        addBehaviour(new BuscarServico(this));
-        /*for(int j = 0;s=="";j++)
-             s = getServicos();*/
-        System.out.println("Servicos: " + s);
-        String[] split = s.split(";");
-        for(int i =0;i< split.length;i++){
-            
-            setFase(1);
-            System.out.println("Enviando proposta a: "+ split[i]);
-            addBehaviour(new EnviarProposta(this,split[i]));
-            if(DocenteAceito!=""){
-                Type = "Receber turmas";
-                addBehaviour(new BuscarServico(this));
-                /*while(s.equals("")){
-                    s = getServicos();
-                }*/
-                System.out.println("Servicos: "+s);
-                String[] split2 = s.split(";");
-                
-                for(int j =0;j< split2.length;j++){
-                    setFase(2);
-                    addBehaviour(new EnviarProposta(this,split2[j]));
-                    if(SalaAceita!=""){
-                        setFase(3);
-                        addBehaviour(new FinalizarProposta(this,DocenteAceito,SalaAceita));
-                        //Escrever a afirmação de proposta
-                        break;
-                    }
-                    
-                }
-                if (SalaAceita=="")
-                    DocenteAceito = "";
-            }
-        }
-        if(DocenteAceito!=""){
-
-        }
+        addBehaviour(new ComportamentoTurma(this));
     }
     
     
-    public static String getDISCIPLINA() {
+    public String getDISCIPLINA() {
         return DISCIPLINA;
     }
 
@@ -82,21 +32,12 @@ public class Turma extends Agent {
         return HORARIOS;
     }
 
-    public void setHorarios(String Horarios) {
-        this.HORARIOS = Horarios;
-    }
+
     
     public String getMensagem(){
-        return this.DISCIPLINA;
+        return DISCIPLINA;
     }
 
-    public String getServicos() {
-        return Servicos;
-    }
-
-    public void setServicos(String aDocentes) {
-        Servicos = aDocentes;
-    }
 
     public String getDocenteAceito() {
         return DocenteAceito;
@@ -125,30 +66,13 @@ public class Turma extends Agent {
     public void setFase(int fase) {
         this.fase = fase;
     }
-    
-    public void search() {
-        DFAgentDescription agenteDescription = new DFAgentDescription();
 
-        ServiceDescription sd = new ServiceDescription();
-        sd.setType(this.getType());
-        sd.setName(this.getMensagem());
-
-        agenteDescription.addServices(sd);
-        DFAgentDescription[] result;
-        result =null;
-            try {
-                result = DFService.search(this, agenteDescription);
-            } catch (FIPAException ex) {
-                //Logger.getLogger(BuscarServico.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        String out="";
-
-        for (int i = 0; i < result.length; i++)
-        {
-            out = out + result[i].getName().getLocalName() + ";";
-        }
-        System.out.println("Teste: " + out);
-        this.setServicos(out);
+    public String getServicos() {
+        return Servicos;
     }
+
+    public void setServicos(String Servicos) {
+        this.Servicos = Servicos;
+    }
+
 }
